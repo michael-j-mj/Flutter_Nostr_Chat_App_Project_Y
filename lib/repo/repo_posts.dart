@@ -23,6 +23,7 @@ extension NostrRepositoryAccount on Repo {
     Filter idFilter = Filter(kinds: [1, 6, 7], e: ids.toList());
     List<Event> details = await nostr
         .getData([metaFilter, idFilter], relays: _account!.first.relays);
+
     details.forEach((event) {
       switch (event.kind) {
         case 0:
@@ -42,9 +43,10 @@ extension NostrRepositoryAccount on Repo {
           break;
         case 7:
           String key = findFirstETag(event.tags);
-          repliesCache[key] ??=
+          debugPrint("repo detail count ${key}");
+          reactionCache[key] ??=
               <Event>[]; // If the key doesn't exist, initialize with an empty list
-          repliesCache[key]!.add(event);
+          reactionCache[key]!.add(event);
           break;
       }
     });

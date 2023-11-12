@@ -54,7 +54,24 @@ class NostPostTemp extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
-            Text(event.content)
+            Text(event.content),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                IconButton(
+                    onPressed: () {},
+                    icon: Text(
+                        "💬${(repo.repliesCache[event.id] ?? []).length}")),
+                IconButton(
+                    onPressed: () {},
+                    icon:
+                        Text("🔃${(repo.repostCache[event.id] ?? []).length}")),
+                IconButton(
+                    onPressed: () {},
+                    icon: Text(
+                        "${repo.reactionCache.containsKey(event.id) && repo.reactionCache[event.id]!.isNotEmpty ? repo.reactionCache[event.id]!.first.content : "👍"} ${(repo.reactionCache[event.id] ?? []).length}"))
+              ],
+            )
           ],
         ),
       ),
