@@ -8,7 +8,7 @@ part of 'nostr_metadata_model.dart';
 
 class NostrMetadataAdapter extends TypeAdapter<NostrMetadata> {
   @override
-  final int typeId = 1;
+  final int typeId = 4;
 
   @override
   NostrMetadata read(BinaryReader reader) {
@@ -23,18 +23,16 @@ class NostrMetadataAdapter extends TypeAdapter<NostrMetadata> {
       name: fields[3] as String,
       about: fields[4] as String,
       picture: fields[5] as String,
-      // nip05: fields[6] as String,
       createAt: fields[8] as DateTime,
-      // subId: fields[9] as String?,
-      id: fields[7] as String,
-      bannerURL: fields[10] as String?,
+      id: fields[6] as String,
+      bannerURL: fields[9] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, NostrMetadata obj) {
     writer
-      ..writeByte(11)
+      ..writeByte(9)
       ..writeByte(0)
       ..write(obj.pubkey)
       ..writeByte(1)
@@ -47,15 +45,11 @@ class NostrMetadataAdapter extends TypeAdapter<NostrMetadata> {
       ..write(obj.about)
       ..writeByte(5)
       ..write(obj.picture)
-      // ..writeByte(6)
-      // ..write(obj.nip05)
-      ..writeByte(7)
+      ..writeByte(6)
       ..write(obj.id)
       ..writeByte(8)
       ..write(obj.createAt)
-      // ..writeByte(9)
-      // ..write(obj.subId)
-      ..writeByte(10)
+      ..writeByte(9)
       ..write(obj.bannerURL);
   }
 

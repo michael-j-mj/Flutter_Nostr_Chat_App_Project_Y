@@ -2,7 +2,7 @@ import 'package:hive/hive.dart';
 import 'package:nostr/nostr.dart';
 part 'account.g.dart';
 
-@HiveType(typeId: 0)
+@HiveType(typeId: 3)
 class Account {
   late Keychain keychain;
   @HiveField(0)

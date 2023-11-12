@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+
+  <!-- Second Parallelogram (Flipped on X-axis, 2x Length, Same Width Throughout, Positioned) -->
+  <polygon points="20,90 24,90 55,10 50,10" fill="white" stroke="black" stroke-width="2" /> 
+   <!-- First Parallelogram -->
+  <polygon points="0,14 8,14 42,50 34,50" fill="white" stroke="black" stroke-width="5" />
+
+</svg>

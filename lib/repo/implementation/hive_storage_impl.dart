@@ -12,10 +12,12 @@ class HiveStorageService implements ILocalStorage {
   @override
   Future<void> start() async {
     await Hive.initFlutter();
+    Hive.resetAdapters();
     Hive
-      ..registerAdapter(NostrMetadataAdapter())
-      ..registerAdapter(AccountAdapter());
+      ..registerAdapter(AccountAdapter())
+      ..registerAdapter(NostrMetadataAdapter());
     box = await Hive.openBox<List>(boxName);
+    debugPrint('box opened');
   }
 
   @override

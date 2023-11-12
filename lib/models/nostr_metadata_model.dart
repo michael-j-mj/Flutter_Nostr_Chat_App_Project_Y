@@ -7,7 +7,7 @@ import 'package:nostr/nostr.dart';
 
 part 'nostr_metadata_model.g.dart';
 
-@HiveType(typeId: 1)
+@HiveType(typeId: 4)
 class NostrMetadata extends Equatable {
   @HiveField(0)
   final String pubkey;
@@ -22,15 +22,10 @@ class NostrMetadata extends Equatable {
   @HiveField(5)
   final String picture;
   @HiveField(6)
-  // final String nip05;
-  // @HiveField(7)
   final String id;
   @HiveField(8)
-  //in seconds
   final DateTime createAt;
   @HiveField(9)
-  // final String? subId;
-  // @HiveField(10)
   final String? bannerURL;
   const NostrMetadata(
       {required this.pubkey,
