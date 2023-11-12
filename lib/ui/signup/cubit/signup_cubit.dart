@@ -6,7 +6,7 @@ import 'package:nostr/nostr.dart';
 part 'signup_state.dart';
 
 class SignupCubit extends Cubit<SignupState> {
-  SignupCubit() : super(SignupLogin());
+  SignupCubit() : super(const SignupLogin());
   void input(String input) {
     if (state is SignupLogin) {
       emit((state as SignupLogin).copyWith(keyInput: input));
@@ -25,7 +25,7 @@ class SignupCubit extends Cubit<SignupState> {
         nsec: Util.keyEncode(Keychain.generate().private, true),
       ));
     } else {
-      emit(SignupLogin());
+      emit(const SignupLogin());
     }
   }
 

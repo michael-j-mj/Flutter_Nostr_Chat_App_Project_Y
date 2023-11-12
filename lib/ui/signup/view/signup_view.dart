@@ -19,7 +19,7 @@ class SignupView extends StatelessWidget {
         },
         builder: (_, state) {
           if (state is SignupConfirmed) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
           return Center(
             child: SingleChildScrollView(
@@ -40,12 +40,12 @@ class SignupView extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: !(state is SignupNewAccount)
+                    child: state is! SignupNewAccount
                         ? TextField(
                             onChanged: (value) {
                               context.read<SignupCubit>().input(value);
@@ -70,7 +70,7 @@ class SignupView extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  Container(
+                  SizedBox(
                       width: 200,
                       child: FloatingActionButton(
                           foregroundColor:
@@ -85,10 +85,9 @@ class SignupView extends StatelessWidget {
                                   : () {
                                       context.read<SignupCubit>().confirmKey();
                                     },
-                          child: Container(
-                              child: Text(!(state is SignupNewAccount)
-                                  ? "Login"
-                                  : "Submit")))),
+                          child: Text(state is! SignupNewAccount
+                              ? "Login"
+                              : "Submit"))),
                   const SizedBox(
                     height: 20,
                   ),
@@ -123,14 +122,14 @@ class SignupView extends StatelessWidget {
         : TextButton(
             onPressed: () async {
               context.read<SignupCubit>().copy();
-              await Clipboard.setData(ClipboardData(text: state.nsec));
 
               // Show a snackbar to indicate the text is copied
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
+                const SnackBar(
                   content: Text('Text copied to clipboard'),
                 ),
               );
+              await Clipboard.setData(ClipboardData(text: state.nsec));
             },
             child: const Row(
               mainAxisSize: MainAxisSize.min,

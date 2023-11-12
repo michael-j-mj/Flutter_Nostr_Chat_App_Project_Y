@@ -1,13 +1,13 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_y_nostr/repo/repo.dart';
 import 'package:flutter_y_nostr/ui/auth/cubit/auth_cubit.dart';
+import 'package:flutter_y_nostr/ui/home/bloc/home_bloc.dart';
+import 'package:flutter_y_nostr/ui/home/views/home_view.dart';
 import 'package:flutter_y_nostr/ui/signup/cubit/signup_cubit.dart';
 import 'package:flutter_y_nostr/ui/signup/view/signup_view.dart';
 
-var theme = ColorScheme.fromSeed(seedColor: Colors.deepPurple);
+var theme = ColorScheme.fromSeed(seedColor: Colors.blueGrey);
 
 class MyApp extends StatelessWidget {
   final Repo repo;
@@ -19,16 +19,7 @@ class MyApp extends StatelessWidget {
     return RepositoryProvider.value(
       value: repo,
       child: BlocProvider(
-        create: (context) => AuthCubit(repo)..loadData(),
-        child: MaterialApp(
-          title: 'Flutter Y',
-          theme: ThemeData(
-            colorScheme: theme,
-            useMaterial3: true,
-          ),
-          home: AppView(),
-        ),
-      ),
+          create: (context) => AuthCubit(repo), child: const AppView()),
     );
   }
 }
@@ -39,21 +30,30 @@ class AppView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //TODO UPDATE WITH GO ROUTER
+    context.read<AuthCubit>().loadData();
 
-    return BlocListener<AuthCubit, AuthState>(
-      listener: (context, state) {
+    return MaterialApp(
+      title: 'Flutter Y',
+      theme: ThemeData().copyWith(
+        colorScheme: theme,
+        useMaterial3: true,
+      ),
+      home: BlocBuilder<AuthCubit, AuthState>(builder: (context, state) {
         if (state is AuthLoggedIn) {
-          //route to posts
+          return BlocProvider(
+            create: (context) => HomeBloc(RepositoryProvider.of<Repo>(context))
+              ..add(HomeEventLoad()),
+            child: const HomeView(),
+          );
         } else if (state is AuthLoggedOut) {
-          Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (context) => BlocProvider(
-              create: (context) => SignupCubit(),
-              child: const SignupView(),
-            ),
-          ));
+          return BlocProvider(
+            create: (context) => SignupCubit(),
+            child: const SignupView(),
+          );
+        } else {
+          return const CircularProgressIndicator();
         }
-      },
-      child: CircularProgressIndicator(),
+      }),
     );
   }
 }

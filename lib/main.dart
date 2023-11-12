@@ -6,9 +6,10 @@ import 'package:flutter_y_nostr/repo/repo.dart';
 import 'package:flutter_y_nostr/ui/app.dart';
 import 'package:hive/hive.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   HiveStorageService local = HiveStorageService();
+  await local.start();
   SecureStorageService secure = SecureStorageService();
   NostrServiceImpl nostr = NostrServiceImpl();
   Repo repo = Repo(nostr: nostr, local: local, secure: secure);

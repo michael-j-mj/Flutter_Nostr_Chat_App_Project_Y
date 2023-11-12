@@ -17,8 +17,13 @@ class AuthCubit extends Cubit<AuthState> {
     //fetch any existing data on realys
     //store profile on local
     // change to logged in
+    ///TODO create login data retrevial.
+    _repo.createAccount(keychain);
     emit(AuthLoggedIn());
   }
 
-  void logut() {}
+  void logOut() {
+    _repo.clearAccount();
+    emit(AuthLoggedOut());
+  }
 }
