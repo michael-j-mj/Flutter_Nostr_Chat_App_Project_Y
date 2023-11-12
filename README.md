@@ -1,10 +1,13 @@
 # flutter_y_nostr
 
-A new Flutter project.
+Quick Cutdown Verison of a Nostr Social Media APP (As of writing Can only view posts)
+![image](https://github.com/michael-j-mj/Flutter_Nostr_Chat_App_Project_Y/assets/90176158/b7e8164a-4273-49c9-bdbb-0abbf918484f)
+
 
 ## Getting Started
 
 This project is a starting point for a Flutter application.
+![Uploading image.png…]()
 
 A few resources to get you started if this is your first Flutter project:
 
