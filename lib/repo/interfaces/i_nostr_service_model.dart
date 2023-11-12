@@ -11,4 +11,5 @@ abstract interface class INostrService {
   WebSocketChannel getDataStream(List<Filter> filter, {required String relay});
 
   Future<bool> sendData(Event event, {required String relay});
+  Future<bool> sendDataAllRelays(Event event, {required List<String> relays});
 }

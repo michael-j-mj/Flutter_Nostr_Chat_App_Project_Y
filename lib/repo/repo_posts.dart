@@ -1,6 +1,13 @@
 part of 'repo.dart';
 
 extension NostrRepositoryAccount on Repo {
+  Future<bool> sendPost(String content) async {
+    Event event = Event.from(
+        kind: 1, content: content, privkey: _account!.first.keychain.private);
+    nostr.sendDataAllRelays(event, relays: _account!.first.relays);
+    return true;
+  }
+
   ///until (Must be older then this value to pass)
   Future<List<Event>> getPosts({int? until, int limit = 33}) async {
     Filter filter = Filter(kinds: [1], until: until, limit: limit);

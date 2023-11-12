@@ -32,6 +32,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       debugPrint("home bloc got ${events.length} posts");
       emit(HomeLoaded(events: List.from(events)));
     });
+    on<HomeEventSendPost>((event, emit) async {
+      bool result = (await repo.sendPost(event.content));
+      debugPrint("sent post " + result.toString());
+    });
     on<HomeEventLoadMore>(
       _loadMore,
       transformer: throttleDroppable(throttleDuration),

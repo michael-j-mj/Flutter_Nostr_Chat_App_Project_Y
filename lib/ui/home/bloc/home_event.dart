@@ -10,3 +10,9 @@ sealed class HomeEvent extends Equatable {
 class HomeEventLoad extends HomeEvent {}
 
 class HomeEventLoadMore extends HomeEvent {}
+
+class HomeEventSendPost extends HomeEvent {
+  final String content;
+
+  const HomeEventSendPost({required this.content});
+}

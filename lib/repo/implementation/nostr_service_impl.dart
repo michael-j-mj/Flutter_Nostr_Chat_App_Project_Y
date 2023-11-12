@@ -128,6 +128,22 @@ class NostrServiceImpl implements INostrService {
     return channel;
   }
 
+  Future<bool> sendDataAllRelays(Event event,
+      {required List<String> relays}) async {
+    int boolSent = 0;
+    int boolFailed = 0;
+
+    await Future.wait(relays.map((relay) async {
+      if (await sendData(event, relay: relay)) {
+        boolSent++;
+      } else {
+        boolFailed--;
+      }
+    }));
+
+    return boolSent > boolFailed;
+  }
+
   @override
   Future<bool> sendData(Event event, {required String relay}) async {
     try {

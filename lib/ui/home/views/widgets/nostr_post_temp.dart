@@ -21,7 +21,7 @@ class NostPostTemp extends StatelessWidget {
     }
     String displayName = metadata != null
         ? "${metadata.displayName} @ ${metadata.name}"
-        : Util.keyEncode(event.pubkey).substring(0, 6);
+        : Util.keyEncode(event.pubkey).substring(0, 9);
     return Card(
       elevation: 4, // Add elevation
       margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16), // Add margin
