@@ -1,7 +1,8 @@
 # flutter_y_nostr
 
 Quick Cutdown Verison of a Nostr Social Media APP (As of writing Can only view posts)
-![image](https://github.com/michael-j-mj/Flutter_Nostr_Chat_App_Project_Y/assets/90176158/b7e8164a-4273-49c9-bdbb-0abbf918484f)
+![image](https://github.com/michael-j-mj/Flutter_Nostr_Chat_App_Project_Y/assets/90176158/b7e8164a-4273-49c9-bdbb-0abbf918484f)![image](https://github.com/michael-j-mj/Flutter_Nostr_Chat_App_Project_Y/assets/90176158/081e845c-6897-4423-9f85-58b275b35bf5)
+
 
 
 ## Getting Started
