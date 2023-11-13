@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_y_nostr/models/nostr_metadata_model.dart';
 import 'package:flutter_y_nostr/repo/repo.dart';
+import 'package:flutter_y_nostr/shared/body_parser.dart';
 import 'package:flutter_y_nostr/utils/util.dart';
 import 'package:nostr/nostr.dart';
 
@@ -37,7 +38,7 @@ class NostPostTemp extends StatelessWidget {
         title: Column(
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
                     child: Text(
@@ -47,6 +48,7 @@ class NostPostTemp extends StatelessWidget {
                 Expanded(
                     child: Text(
                   Util.getTimeAgo(event.createdAt),
+                  textAlign: TextAlign.end,
                   overflow: TextOverflow.ellipsis,
                 ))
               ],
@@ -54,7 +56,7 @@ class NostPostTemp extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
-            Text(event.content),
+            NostrPostBodyParser(rawBodyText: event.content),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [

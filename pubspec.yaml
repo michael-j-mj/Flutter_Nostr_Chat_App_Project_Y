@@ -50,6 +50,7 @@ dependencies:
   flutter_svg: ^2.0.9
   stream_transform: ^2.1.0
   bloc_concurrency: ^0.2.2
+  url_launcher: ^6.2.1
 
 dev_dependencies:
   flutter_test:
